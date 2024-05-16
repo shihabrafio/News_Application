@@ -29,12 +29,17 @@ const NewsDetailScreen = ({ route }) => {
       <Text style={styles.title}>{newsItem.title}</Text>
       <Text style={styles.authorRow}>
         <Text style={styles.author}>⚫ {newsItem.by}</Text>
-        
+
         {newsItem.descendants && (
-          <Text style={styles.votes}>👍 {newsItem.descendants}</Text>
+          <Text style={styles.votes}>           👍 {newsItem.descendants}</Text>
         )}
       </Text>
-      <Text style={styles.author}>{newsItem.text}</Text>
+      <Text style={styles.text}>
+        {newsItem.text?.substring(0, 1) && (
+          <Text style={styles.bigLetter}>{newsItem.text.substring(0, 1)}</Text>
+        )}
+        <Text>{newsItem.text?.substring(1)}</Text>
+      </Text>
       {newsItem.url && (
         <>
         <Text style={styles.author}>To know more about it</Text>
@@ -66,6 +71,13 @@ const styles = StyleSheet.create({
     fontFamily: 'sans-serif',
     fontWeight: 'semibold',
   },
+  text: {
+    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 5,
+    fontFamily: 'sans-serif',
+    fontWeight: 'semibold',
+  },
   votes: {
     fontSize: 16,
     marginBottom: 5,
@@ -82,6 +94,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     marginBottom: 10,
+  },
+  bigLetter: {
+    fontSize: 30,
+    fontWeight: 'bold', 
   },
   content: {
     fontSize: 16,
