@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons } from '@expo/vector-icons'; // Import Ionicons from @expo/vector-icons
+import { Ionicons } from '@expo/vector-icons';
 import NewsListScreen from './src/screens/NewsListScreen';
 import NewsDetailScreen from './src/screens/NewsDetailScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -13,10 +14,6 @@ function App() {
       <Stack.Navigator
         initialRouteName="NewsListScreen"
         screenOptions={{
-          headerStyle: {
-            backgroundColor: '#fff', // Customize header background color
-          },
-          headerTintColor: '#000', // Customize header text color
           headerTitleStyle: {
             fontWeight: 'bold',
           },
