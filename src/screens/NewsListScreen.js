@@ -46,7 +46,7 @@ const NewsListScreen = () => {
   };
 
   const renderNewsItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigateToNewsDetail(item)} style={styles.newsItem}>
+    <TouchableOpacity onPress={() => navigateToNewsDetail(item)} style={styles.boxContainer}>
       <Text style={styles.category}>{item.title}</Text>
       <Text style={styles.author}>Author: {item.by}</Text>
       <Text style={styles.time}>Published: {new Date(item.time * 1000).toLocaleString()}</Text>
@@ -56,8 +56,8 @@ const NewsListScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Top News</Text>
-      <ScrollView >
-        <FlatList
+      <ScrollView style={styles.flex} >
+        <FlatList 
           data={topNews}
           renderItem={renderNewsItem}
           keyExtractor={item => item.id.toString()}
@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  flex: {
+    display: 'flex',
+  },
   category: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -98,6 +101,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginBottom: 20,
+  },
+  boxContainer: {
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20, 
   },
   image: {
     width: '100%',
