@@ -1,5 +1,3 @@
-## Artiz Contest
-- React Native Mobile Application for Artiz Contest Event Registration.
 ## News Application
 
 Welcome to the News Application! This is a mobile application built using React Native that allows users to stay updated with the latest news from various sources.
