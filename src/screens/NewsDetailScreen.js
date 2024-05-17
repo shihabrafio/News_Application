@@ -55,6 +55,8 @@ const NewsDetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 13,
+    backgroundColor: '#ffffff',
   },
   title: {
     fontSize: 30,
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'blue', 
     textDecorationLine: 'underline', 
+    marginBottom: 40,
   },
 });
 
