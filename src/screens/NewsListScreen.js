@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList,ScrollView, ActivityIndicator, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ScrollView, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-
 
 const NewsListScreen = () => {
   const [loading, setLoading] = useState(true);
@@ -32,7 +31,8 @@ const NewsListScreen = () => {
         setTopNews(topNewsData.map(item => item.data));
         setLatestNews(latestNewsData.map(item => item.data));
         setLoading(false);
-      } catch (error) {
+      } 
+      catch (error) {
         console.error('Error fetching data:', error);
         setLoading(false);
       }
@@ -53,24 +53,28 @@ const NewsListScreen = () => {
     </TouchableOpacity>
   );
 
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Top News</Text>
-      <ScrollView style={styles.flex} >
-        <FlatList 
-          data={topNews}
-          renderItem={renderNewsItem}
-          keyExtractor={item => item.id.toString()}
-        />
-      </ScrollView>
+      <FlatList 
+        data={topNews}
+        renderItem={renderNewsItem}
+        keyExtractor={item => item.id.toString()}
+      />
       <Text style={styles.title}>Latest News</Text>
-      <ScrollView >
-        <FlatList
-          data={latestNews}
-          renderItem={renderNewsItem}
-          keyExtractor={item => item.id.toString()}
-        />
-      </ScrollView>
+      <FlatList
+        data={latestNews}
+        renderItem={renderNewsItem}
+        keyExtractor={item => item.id.toString()}
+      />
     </ScrollView>
   );
 };
@@ -79,6 +83,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    backgroundColor: '#ffffff',
   },
   flex: {
     display: 'flex',
@@ -95,7 +100,6 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 14,
     marginBottom: 10,
-
   },
   title: {
     fontSize: 40,
@@ -108,14 +112,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: 10,
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   image: {
     width: '100%',
     height: 200,
     marginTop: 10,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
-
 
 export default NewsListScreen;
