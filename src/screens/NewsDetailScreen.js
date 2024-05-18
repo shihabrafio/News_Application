@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Linking,Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import RenderHtml from 'react-native-render-html';
 
 const NewsDetailScreen = ({ route }) => {
   const { newsItem } = route.params;
-
+  const contentWidth = Dimensions.get('window').width;
+  console.log(contentWidth)
   const handlePress = () => {
     Linking.openURL(newsItem.url);
   };
@@ -34,12 +36,15 @@ const NewsDetailScreen = ({ route }) => {
           <Text style={styles.votes}>           👍 {newsItem.descendants}</Text>
         )}
       </Text>
+      <ScrollView horizontal={true}>
       <Text style={styles.text}>
-        {newsItem.text?.substring(0, 1) && (
-          <Text style={styles.bigLetter}>{newsItem.text.substring(0, 1)}</Text>
-        )}
-        <Text>{newsItem.text?.substring(1)}</Text>
+        <RenderHtml
+          contentWidth={contentWidth}
+          
+          source={{ html: newsItem.text || "<p>No content available.</p>" }}
+        />
       </Text>
+      </ScrollView>
       {newsItem.url && (
         <>
         <Text style={styles.author}>To know more about it</Text>
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginTop: 10,
-    marginBottom: 5,
+    marginBottom: 15,
     fontFamily: 'sans-serif',
     fontWeight: 'semibold',
   },
