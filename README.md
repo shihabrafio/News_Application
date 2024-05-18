@@ -2,9 +2,11 @@
 
 Welcome to the News Application! This is a mobile application built using React Native that allows users to stay updated with the latest news from various sources.
 
-
-
-
+<div align="center">
+ <b> <i> <u> PREVIEW </u> </i></b> </br> </br>
+ <img src='./src/assets/news_detail.jpg'>
+ <img src='./src/assets/news_list.jpg'>
+</div>
 
 ### Features
 
